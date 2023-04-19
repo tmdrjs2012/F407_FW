@@ -1,0 +1,31 @@
+23:27:08 **** Incremental Build of configuration Debug for project F407_FW ****
+make all 
+arm-none-eabi-gcc "../src/app/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DSTM32F407xx -c -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/bsp/cmsis" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/bsp/cmsis/include" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/lib/STM32F4xx_HAL_Driver/Inc" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/app" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/bsp" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/common" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/hw" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/lib/FreeRTOS/Source/CMSIS_RTOS" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/lib/FreeRTOS/Source/include" -I"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F" -Og -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"src/app/app.d" -MT"src/app/app.o" --specs=nano.specs -mfloat-abi=softfp -mthumb -o "src/app/app.o"
+../src/app/app.c: In function 'threadLed1':
+../src/app/app.c:127:32: warning: passing argument 2 of 'osMessagePut' makes integer from pointer without a cast [-Wint-conversion]
+  127 |   osMessagePut(myQueue01Handle,(void *)(&sMessage),100);
+      |                                ^~~~~~~~~~~~~~~~~~~
+      |                                |
+      |                                void *
+In file included from /home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/bsp/bsp.h:15,
+                 from /home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/hw/hw_def.h:14,
+                 from /home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/hw/hw.h:13,
+                 from ../src/app/app.h:13,
+                 from ../src/app/app.c:13:
+/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/lib/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:800:56: note: expected 'uint32_t' {aka 'long unsigned int'} but argument is of type 'void *'
+  800 | osStatus osMessagePut (osMessageQId queue_id, uint32_t info, uint32_t millisec);
+      |                                               ~~~~~~~~~^~~~
+arm-none-eabi-gcc -o "F407_FW.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/F407_FW/src/bsp/ldscript/STM32F407VGTx_FLASH.ld" --specs=nosys.specs -Wl,-Map="F407_FW.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=softfp -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: F407_FW.elf
+ 
+arm-none-eabi-size   F407_FW.elf 
+   text	   data	    bss	    dec	    hex	filename
+  10700	     24	   8064	  18788	   4964	F407_FW.elf
+Finished building: default.size.stdout
+ 
+arm-none-eabi-objdump -h -S  F407_FW.elf  > "F407_FW.list"
+Finished building: F407_FW.list
+ 
+
+23:27:11 Build Finished. 0 errors, 1 warnings. (took 2s.813ms)
+

@@ -1,0 +1,3 @@
+buildConsole/keepLog=true
+buildConsole/logLocation=/home/encanto/MY_PROJECT/STM32/STMF4/STM32F407_FREERTOS/.metadata/.plugins/org.eclipse.cdt.ui/F407_FW.build.log
+eclipse.preferences.version=1

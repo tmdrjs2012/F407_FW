@@ -1,0 +1,88 @@
+/*
+ * app.c
+ *
+ *  Created on: 2023. 2. 19.
+ *      Author: encanto
+ */
+
+#ifndef SRC_APP_APP_C_
+#define SRC_APP_APP_C_
+
+/* Includes ------------------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "app.h"
+/* USER CODE END Includes */
+
+/*
+ *  brief: application initialize function
+ */
+
+//extern uart_t   uart_tbl[UART_MAX_CH];
+
+void updateLed(void);
+void UpdateButton(uint8_t bState);
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	static uint32_t  pTick = 0;
+
+	if(GPIO_Pin == GPIO_PIN_0)
+	{
+		if(HAL_GetTick() - pTick > 300)
+		{
+			pTick = HAL_GetTick();
+			Gpio_Toggle(GPIOD, 1 << 15);
+		}
+	}
+}
+
+void appInit(void)
+{
+	//UartOpen(_DEF_UART1, 9600);
+}
+
+/*
+ *  brief: application Main loop function
+ */
+void appMain(void)
+{
+	uint8_t buf[30] = "CDC test ^^\r\n";
+
+	while(1)
+	{
+		//if (UartAvailable(_DEF_UART1) > 0   )
+	    //{
+	      //uartPrintf(_DEF_UART1, "uart ch1 rx : 0x%X\n", uartRead(_DEF_UART1));
+		//CDC_Transmit_FS((char *)buf, strlen((char *)buf));
+
+			//UartPrintf(_DEF_UART1, "Send message test:  %d\r\n", 123);
+	    //}
+		//updateLed();
+		//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 1);
+		for(int i = 12; i <= 14; i++)
+		{
+			Gpio_Write(GPIOD, 1 << i, 1);
+			HAL_Delay(500);
+		}
+		//HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, 0);
+		for(int i = 12; i <= 14; i++)
+		{
+			Gpio_Write(GPIOD, 1 << i , 0);
+			HAL_Delay(500);
+		}
+	}
+}
+
+void updateLed(void)
+{
+	static uint32_t pre_time = 0;
+
+	if (millis()-pre_time >= 500)
+	{
+		pre_time = millis();
+
+		//Gpio_Toggle(GPIOD, GPIO_PIN_12);
+	}
+}
+
+#endif /* SRC_APP_APP_C_ */

@@ -1,0 +1,5 @@
+../src/app/app.c:137:13:threadLed2	24	static
+../src/app/app.c:103:13:threadLed1	16	static
+../src/app/app.c:41:6:HAL_GPIO_EXTI_Callback	8	static
+../src/app/app.c:55:6:appInit	64	static
+../src/app/app.c:94:6:appMain	8	static
